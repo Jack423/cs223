@@ -8,6 +8,5 @@ Date:	    	2/21/2018
 #include "Balancer.cpp";
 
 int main() {
-
-
+  
 }

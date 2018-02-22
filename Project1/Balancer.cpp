@@ -9,10 +9,27 @@ Date:	    	2/21/2018
 #include "Balancer.h"
 using namespace std;
 
-class Balancer{
-private:
+int main() {
 
-public:
+}
+
+void push(char val) {
+
+}
+
+char pop() {
+
+}
+
+long getSize() {
+
+}
+
+char peek() {
+
+}
+
+void print() {
 
 }
 
