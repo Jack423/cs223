@@ -6,12 +6,70 @@ Date:	    	2/21/2018
 */
 
 #include <iostream>
+#include "Balancer.h"
 using namespace std;
 
-class Balancer {
+Balancer::Balancer(long maxStackSize){
+  if (maxStackSize <= 0){
+            throw "Stack size should be a positive integer.";
+        this->maxStackSize = maxStackSize;
+        topOfStack = -1;
+        stack = new char[maxStackSize];
+  }
+}
 
-private:
-  long maxStackSize, tos;
-  int *stack
+void Balancer::runBalancer(string str){// Input is a string
+  string c;
+  for(int i = 0; str[i] != '\0'; i++){
+//If next Char is "{" or "(", push onto Stack
+      if(str[i] == '{' || str[i] == '('){
+        Balancer::push(str[i]);
+      }
+//If next char is "}" or ")", check if stack is empty
+//If not empty, pop
+      if(str[i+1] == '}' || str[i+1] == ')'){
+        Balancer::pop();
+      }
+//If the poped char is "{" and closing character is ")" or vice versa
+//then string is unbalanced, run error
+      if(stack[topOfStack] == '{' && str[i] == ')'){
+          throw "Error: String is unbalanced.";
+      }
 
+      if(stack[topOfStack] == '(' && str[i] == '}'){
+          throw "Error: String is unbalanced.";
+      }
+}
+//If stack is not empty && string is read through then unbalanced
+//and run error
+  if(stack[topOfStack] >= 0){
+    throw "Error: The string is unbalanced";
+  }
+  else{
+    cout << "Things probably went right";
+  }
+}
+
+void Balancer::push(char val){
+  if (topOfStack == maxStackSize - 1){
+            throw "Cannot push! Stack is full.";
+      }
+  else{
+      stack[++topOfStack] = val;
+    }
+}
+
+char Balancer::pop(){
+  if (topOfStack == -1){
+            throw "Cannot pop! Stack is empty.";
+          }
+  else{
+            return stack[topOfStack--];
+  }
+}
+
+
+
+Balancer::~Balancer(){
+  delete stack;
 }
