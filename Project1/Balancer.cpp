@@ -73,3 +73,17 @@ char Balancer::pop(){
 Balancer::~Balancer(){
   delete stack;
 }
+
+char peek() {
+
+}
+
+void print() {
+
+}
+
+  //If the next character is { or (, then push it onto the stack
+  //If the next character, say c, is } or ), then check if stack is empty.
+  //If stack is empty then the string is unbalanced -- stop the process
+  //Otherwise, pop from the stack -- if the popped character is { and c = ) or
+  //the
