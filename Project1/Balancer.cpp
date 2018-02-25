@@ -25,20 +25,28 @@ void Balancer::runBalancer(string str){// Input is a string
       if(str[i] == '{' || str[i] == '('){
         Balancer::push(str[i]);
       }
+      else{
 //If next char is "}" or ")", check if stack is empty
 //If not empty, pop
-      if(str[i+1] == '}' || str[i+1] == ')'){
-        Balancer::pop();
-      }
+        while(str[i+1] == '}'|| str[i+1] == ')'){
+            if(Balancer::getSize() = 0){
+                throw "Error: String is unbalanced.";
+            }
+            else{
+              Balancer::pop();
+            }
+        }
+
 //If the poped char is "{" and closing character is ")" or vice versa
 //then string is unbalanced, run error
       if(stack[topOfStack] == '{' && str[i] == ')'){
           throw "Error: String is unbalanced.";
-      }
+    }
 
       if(stack[topOfStack] == '(' && str[i] == '}'){
           throw "Error: String is unbalanced.";
-      }
+    }
+  }
 }
 //If stack is not empty && string is read through then unbalanced
 //and run error
@@ -68,7 +76,9 @@ char Balancer::pop(){
   }
 }
 
-
+long Balancer::getSize() {
+        return topOfStack + 1;
+    }
 
 Balancer::~Balancer(){
   delete stack;

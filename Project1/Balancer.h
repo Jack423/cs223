@@ -20,7 +20,7 @@ public:
     void runBalancer(std::string statement);
     void push(char val);
     char pop();
-    //long getSize();
+    long getSize();
     //char peek();
     //void print();
 };
