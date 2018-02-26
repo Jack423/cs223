@@ -18,29 +18,23 @@ int main() {
   //Balancer test(6);
   //test.runBalancer("{{{}}}");
 
-  /*StackUsingQueue stackViaQ(5);
   StackQueue stack(5);
-  cout << "**** Push Test ****" << endl << endl;
-  for (int i = 1; i <= 5; i++) {
-        stackViaQ.push(i);
-        stack.push(i);
-        cout << "Queue implementation: ";
-        stackViaQ.print();
-        cout << endl;
-        cout << "Standard implementation: ";
-        stack.print();
-        cout << endl << endl;
-    }
-  cout << "**** Pop Test ****" << endl << endl;
-  for (int i = 1; i <= 5; i++) {
-        cout << "Queue implementation: (Popped " << stackViaQ.pop() << ") ";
-        stackViaQ.print();
-        cout << endl;
-        cout << "Standard implementation: (Popped " << stack.pop() << ") ";
-        stack.print();
-        cout << endl << endl;
-    }
-*/
+
+  cout << "Run the stack sequence \n";
+  stack.push(5);
+  stack.push(3);
+  stack.push(6);
+  stack.push(8);
+
+  stack.print();
+
+  stack.pop();
+  stack.pop();
+
+  stack.print();
+
+  cout << "End the stack sequence \n";
+
   int array[10] = {1,2,3,5,5,5,6,6,7,9};
   int binAnswer = binarySearch(array, 0, 9, 5);
 

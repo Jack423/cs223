@@ -22,7 +22,7 @@ public:
   void enqueue(int queue[], int val);
   int dequeue(int queue[]);
   long getSize();
-  void print(){};
+  //void print();
 };
 
 #endif

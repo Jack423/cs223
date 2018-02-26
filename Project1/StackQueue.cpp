@@ -6,8 +6,6 @@ Date:	    	2/21/2018
 */
 #include <iostream>
 #include "StackQueue.h"
-#include <string>
-#include <sstream>
 using namespace std;
 
     StackQueue::StackQueue(long maxQueueSize) {
@@ -64,30 +62,30 @@ using namespace std;
     long StackQueue::getSize(){
         return currentSize;
     }
-
-    /*void print() {
-        if (getSize() == 0)
+/*
+    void StackQueue::print() {
+        if (StackQueue::getSize() == 0)
             cout << "[]";
         else {
             long rear = (front + currentSize) % maxQueueSize;
             string output = "[";
             if (rear > front) {
                 for (long i = front; i < rear - 1; i++)
-                    output += std::to_string(mainQueue[i]) + ", ";
-                    output += std::to_string(mainQueue[rear - 1]) + "]";
+                    output += mainQueue[i] + ", ";
+                    output += mainQueue[rear - 1] + "]";
             } else {
                 for (long i = front; i < maxQueueSize - 1; i++)
-                    output += std::to_string(mainQueue[i]) + ", ";
-                output += std::to_string(mainQueue[maxQueueSize - 1]);
+                    output += mainQueue[i] + ", ";
+                    output += mainQueue[maxQueueSize - 1];
 
                 for (long i = 0; i < rear; i++)
-                    output += ", " + std::to_string(mainQueue[i]);
-                output += "]";
+                    output += ", " + mainQueue[i];
+                    output += "]";
             }
             cout << output;
         }
     }
-    */
+*/
 
     StackQueue::~StackQueue() {
         delete mainQueue;
