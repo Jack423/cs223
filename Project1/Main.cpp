@@ -6,44 +6,71 @@ Date:	    	2/21/2018
 */
 
 #include <iostream>
-//#include "Balancer.h"
+#include "Balancer.h"
 #include "StackQueue.h"
 using namespace std;
 
+long queueSize = 5;
+
+StackQueue *mainQueue = new StackQueue(queueSize);
+StackQueue *tempQueue = new StackQueue(queueSize);
+
+void push(int x);
+void pop();
 int binarySearch(int *A, int low, int high, int key);
 int findPredecessor(int B[], int arrayLen, int key);
 
 int main() {
 
-  //Balancer test(6);
-  //test.runBalancer("{{{}}}");
+/* The Balancer function causes a segmantation fault when not commented out
+  Balancer *test = new Balancer(6);
+  test->runBalancer("{{{}}}");
+*/
+  cout << "\nRun the stack sequence \n\n";
+  push(1);
+  push(5);
+  push(3);
+  push(6);
+  push(8);
 
-  StackQueue stack(5);
+  mainQueue->print();
 
-  cout << "Run the stack sequence \n";
-  stack.push(5);
-  stack.push(3);
-  stack.push(6);
-  stack.push(8);
+  pop();
+  pop();
 
-  stack.print();
+  mainQueue->print();
 
-  stack.pop();
-  stack.pop();
+  cout << "\nEnd the stack sequence \n\n";
 
-  stack.print();
-
-  cout << "End the stack sequence \n";
 
   int array[10] = {1,2,3,5,5,5,6,6,7,9};
   int binAnswer = binarySearch(array, 0, 9, 5);
 
   int array2[7] = {9,10,13,22,31,34,88};
-  int pred = findPredecessor(array2, 7,87);
+  int pred = findPredecessor(array2, 7,30);
   cout << "The predecessor is " << array2[pred] << "\n\n";
 
   return 0;
 }
+
+void push(int x){
+          while(mainQueue->getSize() != 0){
+              int transfer = mainQueue->dequeue();
+              tempQueue->enqueue(transfer);
+          }
+
+          mainQueue->enqueue(x);
+
+          while(tempQueue->getSize() != 0){
+              int putBack = tempQueue->dequeue();
+              mainQueue->enqueue(putBack);
+          }
+    }
+
+void pop(){
+        int popValue = mainQueue->dequeue();
+        cout << "The value being popped is " << popValue << "\n";
+    }
 
 int binarySearch(int *A, int low, int high, int key){
           int mid = (low + high)/2;

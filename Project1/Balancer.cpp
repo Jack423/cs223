@@ -7,6 +7,7 @@ Date:	    	2/21/2018
 
 #include <iostream>
 #include "Balancer.h"
+#include <string>
 using namespace std;
 
 Balancer::Balancer(long maxStackSize){
@@ -18,35 +19,27 @@ Balancer::Balancer(long maxStackSize){
   }
 }
 
-void Balancer::runBalancer(string str){// Input is a string
-  string c;
-  for(int i = 0; str[i] != '\0'; i++){
+void Balancer::runBalancer(string balStr){// Input is a string
+
+  for(int i = 0; balStr[i] != '\0'; i++){
 //If next Char is "{" or "(", push onto Stack
-      if(str[i] == '{' || str[i] == '('){
-        Balancer::push(str[i]);
+      if(balStr[i] == '{' || balStr[i] == '('){
+          Balancer::push(balStr[i]);
       }
       else{
 //If next char is "}" or ")", check if stack is empty
 //If not empty, pop
-        while(str[i+1] == '}'|| str[i+1] == ')'){
-            if(Balancer::getSize() = 0){
-                throw "Error: String is unbalanced.";
-            }
-            else{
-              Balancer::pop();
-            }
-        }
-
+          char c = Balancer::pop();
 //If the poped char is "{" and closing character is ")" or vice versa
 //then string is unbalanced, run error
-      if(stack[topOfStack] == '{' && str[i] == ')'){
-          throw "Error: String is unbalanced.";
-    }
+          if(c == '{' && balStr[i] == ')'){
+              throw "Error: String is unbalanced.";
+          }
 
-      if(stack[topOfStack] == '(' && str[i] == '}'){
-          throw "Error: String is unbalanced.";
-    }
-  }
+          if(c == '(' && balStr[i] == '}'){
+              throw "Error: String is unbalanced.";
+            }
+      }
 }
 //If stack is not empty && string is read through then unbalanced
 //and run error
@@ -56,6 +49,7 @@ void Balancer::runBalancer(string str){// Input is a string
   else{
     cout << "Things probably went right";
   }
+  cout << "Stuff happened";
 }
 
 void Balancer::push(char val){
@@ -91,9 +85,3 @@ char peek() {
 void print() {
 
 }
-
-  //If the next character is { or (, then push it onto the stack
-  //If the next character, say c, is } or ), then check if stack is empty.
-  //If stack is empty then the string is unbalanced -- stop the process
-  //Otherwise, pop from the stack -- if the popped character is { and c = ) or
-  //the

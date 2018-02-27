@@ -6,6 +6,7 @@ Date:	    	2/21/2018
 */
 #include <iostream>
 #include "StackQueue.h"
+
 using namespace std;
 
     StackQueue::StackQueue(long maxQueueSize) {
@@ -14,30 +15,10 @@ using namespace std;
         this->maxQueueSize = maxQueueSize;
         front = 0;
         currentSize = 0;
-        mainQueue = new int[maxQueueSize];
-        tempQueue= new int[maxQueueSize];
+        queue = new int[maxQueueSize];
     }
 
-    void StackQueue::push(int x){
-          while(currentSize != 0){
-              int transfer = StackQueue::dequeue(mainQueue);
-              StackQueue::enqueue(tempQueue, transfer);
-          }
-
-          StackQueue::enqueue(mainQueue, x);
-
-          while(StackQueue::getSize() != 0){
-              int putBack = StackQueue::dequeue(tempQueue);
-              StackQueue::enqueue(mainQueue, putBack);
-          }
-    }
-
-    void StackQueue::pop(){
-        int popValue = StackQueue::dequeue(mainQueue);
-        cout << "The value being popped is " << popValue << "\n";
-    }
-
-    void StackQueue::enqueue(int queue[], int val) {
+    void StackQueue::enqueue(int val) {
         if (currentSize == maxQueueSize)
             throw "Failed to enqueue! Queue is full.";
         else {
@@ -47,7 +28,7 @@ using namespace std;
         }
     }
 
-    int StackQueue::dequeue(int queue[]) {
+    int StackQueue::dequeue() {
         if (currentSize == 0)
             throw "Failed to dequeue! Queue is empty.";
         else {
@@ -62,32 +43,37 @@ using namespace std;
     long StackQueue::getSize(){
         return currentSize;
     }
-/*
+
     void StackQueue::print() {
         if (StackQueue::getSize() == 0)
             cout << "[]";
         else {
             long rear = (front + currentSize) % maxQueueSize;
-            string output = "[";
+            int output;
+            cout << "[";
             if (rear > front) {
-                for (long i = front; i < rear - 1; i++)
-                    output += mainQueue[i] + ", ";
-                    output += mainQueue[rear - 1] + "]";
+                for (long i = front; i < rear; i++){
+                    output = queue[i];
+                    cout << output << ", ";
+                    output = queue[rear - 1];
+                    cout << output << "]";
+                }
             } else {
-                for (long i = front; i < maxQueueSize - 1; i++)
-                    output += mainQueue[i] + ", ";
-                    output += mainQueue[maxQueueSize - 1];
-
-                for (long i = 0; i < rear; i++)
-                    output += ", " + mainQueue[i];
-                    output += "]";
+                for (long i = front; i < maxQueueSize - 1; i++){
+                    output = queue[i];
+                    cout << output << ", ";
+                    output = queue[maxQueueSize - 1];
+                  }
+                for (long i = 0; i < rear; i++){
+                    cout << output << ", ";
+                    output = queue[i];
+                }
+                  cout << output;
+                  cout << "] \n";
             }
-            cout << output;
         }
     }
-*/
 
     StackQueue::~StackQueue() {
-        delete mainQueue;
-        delete tempQueue;
+        delete queue;
     }

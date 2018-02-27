@@ -11,7 +11,7 @@ Date:	    	2/21/2018
 class StackQueue{
 private:
   long maxQueueSize, front, currentSize;
-  int *mainQueue, *tempQueue;
+  int *queue;
 
 public:
   StackQueue();
@@ -19,10 +19,10 @@ public:
   ~StackQueue();
   void push(int x);
   void pop();
-  void enqueue(int queue[], int val);
-  int dequeue(int queue[]);
+  void enqueue(int val);
+  int dequeue();
   long getSize();
-  //void print();
+  void print();
 };
 
 #endif
